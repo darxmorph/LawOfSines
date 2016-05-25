@@ -49,7 +49,7 @@ namespace LawOfSines
             bool haveSideC = (sideC != 0);
             bool haveAll = haveAngleA && haveAngleB && haveAngleC && haveSideA && haveSideB && haveSideC;
             bool canSolveMore = ((haveAngleA && !haveSideA) || (haveSideA && !haveAngleA)
-                || (haveAngleB && !haveAngleB) || (haveSideB && !haveAngleB)
+                || (haveAngleB && !haveSideB) || (haveSideB && !haveAngleB)
                 || (haveAngleC && !haveAngleC) || (haveSideC && !haveAngleC));
 
             // at least: 1*(sideX + AngleX) + 1 side/angle
@@ -68,14 +68,11 @@ namespace LawOfSines
                             // a/sinA = b/sinB
                             // b=(a*sinB)/sinA
                             sideB = (sideA * Math.Sin(angleB)) / Math.Sin(angleA);
-                            // sideA = (sideB * Math.Sin(angleA)) / Math.Sin(angleB);
-                            // sideC = (sideB * Math.Sin(angleC)) / Math.Sin(angleB);
                         }
 
                         if (haveAngleC && !haveSideC)
                         {
                             sideC = (sideA * Math.Sin(angleC)) / Math.Sin(angleA);
-                            // sideC = (sideB * Math.Sin(angleC)) / Math.Sin(angleB);
                         }
 
                         if (haveSideB && !haveAngleB)
@@ -89,7 +86,7 @@ namespace LawOfSines
                             angleC = Math.Asin((Math.Sin(angleA) * sideC) / sideA);
                         }
                     }
-                    if (haveAngleB && haveSideB && ((!haveAngleA && haveSideA) || (haveAngleA && !haveSideA) || (!haveAngleC && haveSideC) || (haveAngleC && !haveSideC)))
+                    if (haveAngleB && haveSideB)
                     {
                         if (haveAngleA && !haveSideA)
                         {
@@ -111,7 +108,7 @@ namespace LawOfSines
                             angleC = Math.Asin((Math.Sin(angleB) * sideC) / sideB);
                         }
                     }
-                    if (haveAngleC && haveSideC && ((!haveAngleA && haveSideA) || (haveAngleA && !haveSideA) || (!haveAngleB && haveSideB) || (haveAngleB && !haveSideB)))
+                    if (haveAngleC && haveSideC)
                     {
                         if (haveAngleA && !haveSideA)
                         {
@@ -169,18 +166,6 @@ namespace LawOfSines
                     canSolveMore = ((haveAngleA && !haveSideA) || (haveSideA && !haveAngleA)
                         || (haveAngleB && !haveSideB) || (haveSideB && !haveAngleB)
                         || (haveAngleC && !haveSideC) || (haveSideC && !haveAngleC));
-
-                    // Console.WriteLine("aa: " + haveAngleA);
-                    // Console.WriteLine("ab: " + haveAngleB);
-                    // Console.WriteLine("ac: " + haveAngleC);
-                    // Console.WriteLine("sa: " + haveSideA);
-                    // Console.WriteLine("sb: " + haveSideB);
-                    // Console.WriteLine("sc: " + haveSideC);
-
-                    // Console.ReadLine();
-
-                    // Console.WriteLine(haveAngleB);
-                    // Console.WriteLine(haveSideB);
                 }
 
                 return new IlluminatiTriangle(angleA, angleB, angleC, sideA, sideB, sideC);
